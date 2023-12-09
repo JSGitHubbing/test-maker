@@ -1,14 +1,21 @@
-<ng-container >
-  <app-question-card
-    *ngFor="let question of (test | async)?.questions"
-    [question]="question"
-    (onResult)="onResultQuestion(question, $event)"
-  ></app-question-card>
+<app-question-card
+  *ngFor="let question of (test | async)?.questions"
+  [question]="question"
+  (onResult)="onResultQuestion(question, $event)"
+></app-question-card>
 
-  <div class="current-stats">
+<div class="actions">
+  <div
+    class="current-stats"
+    *ngIf="(test | async)?.questions?.length as numberQuestions"
+  >
     <div>
       Respuestas correctas <b>{{ correctAnswers }}</b> de
-      <b>{{ (test | async)?.questions?.length }}</b>
+      <b>{{ numberQuestions }}</b>
+      <i> {{ (correctAnswers / numberQuestions) * 100 }}% </i>
     </div>
   </div>
-</ng-container>
+  <button (click)="restartTest()">
+    <i-tabler name="reload"></i-tabler>
+  </button>
+</div>

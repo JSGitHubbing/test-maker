@@ -1,11 +1,5 @@
-<nav>
-  <button
-    *ngFor="let option of navOptions"
-    (click)="navigateTo(option.path)"
-    [disabled]="!option.enabled"
-  >
-    {{ option.name }}
-  </button>
-</nav>
-<img src="path/to/icon.svg" alt="icon title" />
-<router-outlet></router-outlet>
+<app-nav-bar></app-nav-bar>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

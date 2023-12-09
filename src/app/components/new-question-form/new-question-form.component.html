@@ -4,7 +4,12 @@
     placeholder="Escribe la pregunta..."
     [(ngModel)]="question.title"
   />
-  <button (click)="addAnswer()">Añadir respuesta</button>
+  <button (click)="addAnswer()" class="color-info">
+    <i-tabler name="circle-plus"></i-tabler>
+  </button>
+  <button (click)="deleteQuestion()" class="color-danger">
+    <i-tabler name="circle-minus"></i-tabler>
+  </button>
 </div>
 <div
   *ngFor="let option of question.options"
@@ -23,4 +28,7 @@
     placeholder="Escribe la respuesta..."
     [(ngModel)]="option.description"
   />
+  <button (click)="deleteAnswer(option.uuid)" class="color-danger">
+    <i-tabler name="circle-minus"></i-tabler>
+  </button>
 </div>

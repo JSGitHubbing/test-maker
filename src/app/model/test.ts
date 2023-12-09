@@ -6,4 +6,5 @@ export interface Test {
   questions: Question[];
   creationDate: string;
   tags: string[];
+  hasChanges?: boolean;
 }

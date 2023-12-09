@@ -1,12 +1,24 @@
+<div class="page-title">
+  <h1>Nuevo Test</h1>
+</div>
 
-<label for="title">Título</label>
-<input type="text" name="title" [(ngModel)]="title">
+<div class="input-field">
+  <label for="title">Título</label>
+  <input type="text" name="title" [(ngModel)]="test.title" />
+</div>
 <div class="question-list">
   <app-new-question-form
-    *ngFor="let question of questions"
+    *ngFor="let question of test.questions"
     [question]="question"
+    (onDelete)="deleteQuestion(question.uuid)"
   ></app-new-question-form>
 </div>
 
-<button (click)="newQuestion()">Añadir pregunta</button>
-<button (click)="saveTest()">Guardar Test</button>
+<div class="actions">
+  <button (click)="newQuestion()" class="color-info">
+    <i-tabler name="circle-plus"></i-tabler>
+  </button>
+  <button (click)="saveTest()">
+    <i-tabler name="device-floppy"></i-tabler>
+  </button>
+</div>

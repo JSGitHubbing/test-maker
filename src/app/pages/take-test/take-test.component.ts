@@ -28,10 +28,14 @@ export class TakeTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.test = this.testCollectionStore.currentTest;
-    if (!this.test) this.router.navigate([AppRoutes.TestCollection]);
+    if (!this.testCollectionStore.hasTestSelected) this.router.navigate([AppRoutes.TestCollection]);
   }
 
   onResultQuestion(question: Question, correct: boolean): void {
     this.results.set(question, correct);
+  }
+
+  restartTest(): void {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => this.router.navigate([AppRoutes.TakeTest]))
   }
 }

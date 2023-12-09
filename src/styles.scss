@@ -1,8 +1,94 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #e7e7e7;
+  background-color: #e7e7e7;
+}
+
+@media (prefers-color-scheme: dark) {
+  body,
+  button,
+  input {
+    background-color: #313131;
+    border-color: white;
+    color: #e7e7e7;
+  }
+}
+
+.color-danger {
+  color: #f72323;
+}
+
+.color-success {
+  color: #009118;
+}
+
+.color-info {
+  color: #4a83ed;
+}
+
+.color-warning {
+  color: #f7a223;
+}
+
+.alert-icon {
+  position: relative;
+}
+
+.alert-icon::after {
+  $size: 10px;
+  content: "";
+  width: $size;
+  height: $size;
+  background-color: #f72323;
+  position: absolute;
+  top: calc($size * -0.5);
+  right: calc($size * -0.5);
+  border-radius: 50%;
+}
+
+button {
+  display: grid;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  transition: opacity ease-in-out 200ms;
+
+  > i-tabler {
+    transition: filter ease-in-out 200ms;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    > i-tabler {
+      filter: drop-shadow(1px 1px 10px currentcolor);
+    }
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+input {
+  border-radius: 5px;
 }

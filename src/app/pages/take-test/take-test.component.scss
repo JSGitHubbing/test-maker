@@ -1,4 +1,9 @@
 .current-stats {
-  margin-top: 2rem;
   text-align: right;
+}
+
+.actions {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-between;
 }

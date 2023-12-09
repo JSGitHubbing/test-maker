@@ -107,5 +107,7 @@
       }
     }
   },
-  "defaultProject": "test-maker"
+  "cli": {
+    "analytics": false
+  }
 }

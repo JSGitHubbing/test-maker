@@ -1,18 +1,59 @@
-<h1>Últimos tests creados</h1>
+<input
+  type="file"
+  accept=".json"
+  hidden
+  #fileUpload
+  (change)="onFileSelected($event)"
+  multiple
+/>
 
-<div class="test-list">
-  <div class="card" *ngFor="let test of testCollection | async">
-    <h2>{{ test.title }}</h2>
-    <p>
-      <span class="tag" *ngFor="let tag of test.tags"> {{ tag }} </span>
-    </p>
-    <div class="actions">
-        <button (click)="takeTest(test.uuid)">Empezar</button>
-        <button (click)="editTest(test.uuid)">Editar</button>
-        <button (click)="deleteTest(test.uuid)">Eliminar</button>
-    </div>
+<div class="page-title">
+  <h1>Colección</h1>
+  <div class="actions">
+    <button (click)="goToMakeTest()" class="color-info">
+      <i-tabler name="circle-plus"></i-tabler>
+    </button>
+    <button (click)="fileUpload.click()">
+      <i-tabler name="file-upload"></i-tabler>
+    </button>
   </div>
 </div>
+<div class="test-list" *ngIf="testCollection$ | async as testCollection">
+  <ng-container *ngIf="testCollection.length; else emptyList">
+    <div class="item-card" *ngFor="let test of testCollection">
+      <div class="content">
+        <div>
+          <h2>{{ test.title }}</h2>
+          <p>
+            <span class="tag" *ngFor="let tag of test.tags"> {{ tag }} </span>
+          </p>
+        </div>
+        <div class="actions">
+          <button (click)="takeTest(test.uuid)" class="color-success">
+            <i-tabler name="player-play-filled"></i-tabler>
+          </button>
+          <button (click)="editTest(test)" class="color-info">
+            <i-tabler name="edit"></i-tabler>
+          </button>
+          <button
+            (click)="downloadJson(test.uuid)"
+            [ngClass]="{ 'alert-icon': test.hasChanges }"
+            class="color-info"
+          >
+            <i-tabler name="file-download"></i-tabler>
+          </button>
+          <button (click)="deleteTest(test.uuid)" class="color-danger">
+            <i-tabler name="circle-minus"></i-tabler>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
 
-<h1>Cargar desde CSV</h1>
-<input type="file" />
+<ng-template #emptyList>
+  <div class="grid">
+    <p>No existen tests por el momento, prueba a crear uno</p>
+    <button (click)="goToMakeTest()">Crear Test</button>
+  </div>
+</ng-template>

@@ -1,0 +1,26 @@
+.highlight {
+  border: 2px solid orange;
+}
+
+.grid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.test-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.item-card {
+  border-radius: 5px;
+  border: 1px solid gray;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  padding-inline: 2rem;
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}

@@ -1,0 +1,9 @@
+<nav>
+  <button
+    *ngFor="let option of navOptions"
+    (click)="navigateTo(option.path)"
+    [disabled]="!option.enabled"
+  >
+    {{ option.name }}
+  </button>
+</nav>

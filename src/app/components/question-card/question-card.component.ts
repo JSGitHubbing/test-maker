@@ -9,7 +9,7 @@ import { Question } from '../../model/question';
 })
 export class QuestionCardComponent implements OnInit {
   @Input() question!: Question;
-  @Input() autocorect: boolean = true;
+  @Input() autocorrect: boolean = true;
   @Output() onSelectedOption = new EventEmitter<QuestionOption | undefined>();
   @Output() onResult = new EventEmitter<boolean>();
 
@@ -28,7 +28,7 @@ export class QuestionCardComponent implements OnInit {
     this.currentSelected = this.currentSelected === value ? undefined : value;
     this.onSelectedOption.emit(value);
 
-    if (this.autocorect) {
+    if (this.autocorrect) {
       this.correct = true;
       this.blockComponent = true;
     }

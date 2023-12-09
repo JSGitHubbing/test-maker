@@ -1,0 +1,20 @@
+nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+
+  button {
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 4px;
+    padding-inline: 12px;
+    transition: opacity ease-in-out 200ms;
+    font-weight: 500;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

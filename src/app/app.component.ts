@@ -8,33 +8,6 @@ import { AppRoutes } from './constants/routes';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'test-maker';
-
-  constructor(
-    private router: Router,
-    private testCollectionStore: TestCollectionStoreService
-  ) {}
-  get testLoaded(): boolean {
-    return this.testCollectionStore.currentTest !== undefined;
-  }
-
-  ngOnInit(): void {}
-
-  navOptions = [
-    {
-      name: 'Collection',
-      path: AppRoutes.TestCollection,
-      enabled: true,
-    },
-    {
-      name: 'Make Test',
-      path: AppRoutes.MakeTest,
-      enabled: true,
-    },
-  ];
-
-  navigateTo(path: string): void {
-    this.router.navigate([path]);
-  }
 }
