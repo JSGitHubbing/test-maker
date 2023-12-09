@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/test-maker",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
