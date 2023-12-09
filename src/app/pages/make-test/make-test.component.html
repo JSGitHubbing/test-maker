@@ -1,0 +1,12 @@
+
+<label for="title">Título</label>
+<input type="text" name="title" [(ngModel)]="title">
+<div class="question-list">
+  <app-new-question-form
+    *ngFor="let question of questions"
+    [question]="question"
+  ></app-new-question-form>
+</div>
+
+<button (click)="newQuestion()">Añadir pregunta</button>
+<button (click)="saveTest()">Guardar Test</button>

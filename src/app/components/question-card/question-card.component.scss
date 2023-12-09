@@ -1,0 +1,29 @@
+h1 {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.options {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.question-option {
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+}
+
+.selected {
+  background-color: #c6edff;
+}
+
+.correct {
+  background-color: #a0d1a0;
+}
+
+.incorrect {
+  background-color: #ff5c5c;
+}

@@ -1,0 +1,18 @@
+<h1>Últimos tests creados</h1>
+
+<div class="test-list">
+  <div class="card" *ngFor="let test of testCollection | async">
+    <h2>{{ test.title }}</h2>
+    <p>
+      <span class="tag" *ngFor="let tag of test.tags"> {{ tag }} </span>
+    </p>
+    <div class="actions">
+        <button (click)="takeTest(test.uuid)">Empezar</button>
+        <button (click)="editTest(test.uuid)">Editar</button>
+        <button (click)="deleteTest(test.uuid)">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<h1>Cargar desde CSV</h1>
+<input type="file" />

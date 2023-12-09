@@ -1,0 +1,26 @@
+<div class="title">
+  <input
+    type="text"
+    placeholder="Escribe la pregunta..."
+    [(ngModel)]="question.title"
+  />
+  <button (click)="addAnswer()">Añadir respuesta</button>
+</div>
+<div
+  *ngFor="let option of question.options"
+  class="respuesta"
+  [ngClass]="{ correct: question.correctAnswerUuid === option.uuid }"
+>
+  <input
+    type="radio"
+    [name]="question.uuid"
+    [id]="option.uuid"
+    [value]="option.uuid"
+    [(ngModel)]="question.correctAnswerUuid"
+  />
+  <input
+    type="text"
+    placeholder="Escribe la respuesta..."
+    [(ngModel)]="option.description"
+  />
+</div>

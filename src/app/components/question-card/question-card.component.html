@@ -1,0 +1,18 @@
+<h1>{{ question.title }}</h1>
+<div class="options">
+  <div
+    *ngFor="let option of question.options"
+    class="question-option"
+    [ngClass]="{
+      selected: currentSelected === option,
+      correct: option.uuid === question.correctAnswerUuid && correct,
+      incorrect:
+        currentSelected === option &&
+        option.uuid !== question.correctAnswerUuid &&
+        correct
+    }"
+    (click)="selectedOption(option)"
+  >
+    <span>{{ option.description }}</span>
+  </div>
+</div>

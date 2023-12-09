@@ -1,0 +1,14 @@
+<ng-container >
+  <app-question-card
+    *ngFor="let question of (test | async)?.questions"
+    [question]="question"
+    (onResult)="onResultQuestion(question, $event)"
+  ></app-question-card>
+
+  <div class="current-stats">
+    <div>
+      Respuestas correctas <b>{{ correctAnswers }}</b> de
+      <b>{{ (test | async)?.questions?.length }}</b>
+    </div>
+  </div>
+</ng-container>
