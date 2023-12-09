@@ -11,11 +11,7 @@
     <i-tabler name="circle-minus"></i-tabler>
   </button>
 </div>
-<div
-  *ngFor="let option of question.options"
-  class="respuesta"
-  [ngClass]="{ correct: question.correctAnswerUuid === option.uuid }"
->
+<div *ngFor="let option of question.options" class="respuesta">
   <input
     type="radio"
     [name]="question.uuid"

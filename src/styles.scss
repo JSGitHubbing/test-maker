@@ -9,9 +9,13 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body,
-  button,
   input {
     background-color: #313131;
+    border-color: white;
+    color: #e7e7e7;
+  }
+  button {
+    background-color: transparent;
     border-color: white;
     color: #e7e7e7;
   }
