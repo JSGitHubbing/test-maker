@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AppRoutes } from 'src/app/constants/routes';
 import { Test } from 'src/app/model/test';
-import { JsonDownloadService } from 'src/app/services/json-download.service';
-import { TestCollectionStoreService } from 'src/app/services/test-collection-store.service';
+import { TestCollectionStoreService } from 'src/app/services/test-collection-store/test-collection-store.service';
 
 @Component({
   selector: 'app-load-test',
@@ -20,7 +19,7 @@ export class LoadTestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.testCollection$ = this.testCollectionStore.testCollection;
+    this.testCollection$ = this.testCollectionStore.testCollection$;
   }
 
   takeTest(uuid: string): void {

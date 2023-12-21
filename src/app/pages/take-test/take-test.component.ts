@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AppRoutes } from 'src/app/constants/routes';
 import { Question } from 'src/app/model/question';
 import { Test } from 'src/app/model/test';
-import { TestCollectionStoreService } from 'src/app/services/test-collection-store.service';
+import { TestCollectionStoreService } from 'src/app/services/test-collection-store/test-collection-store.service';
 
 @Component({
   selector: 'app-take-test',
@@ -27,7 +27,7 @@ export class TakeTestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.test = this.testCollectionStore.currentTest;
+    this.test = this.testCollectionStore.currentTest$;
     if (!this.testCollectionStore.hasTestSelected) this.router.navigate([AppRoutes.TestCollection]);
   }
 

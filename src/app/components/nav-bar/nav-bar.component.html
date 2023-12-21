@@ -1,9 +1,19 @@
 <nav>
-  <button
-    *ngFor="let option of navOptions"
-    (click)="navigateTo(option.path)"
-    [disabled]="!option.enabled"
-  >
-    {{ option.name }}
-  </button>
+  <span class="app-title"> {{ title }} </span>
+  <div class="buttons">
+    <button
+      *ngFor="let option of navOptions"
+      (click)="navigateTo(option.path)"
+      [disabled]="!option.enabled"
+    >
+      {{ option.name }}
+    </button>
+  </div>
+  <div class="login">
+    <div *ngIf="user">
+      <span>{{ user.displayName }}</span>
+      <button (click)="onLogOut()">Logout</button>
+    </div>
+    <button *ngIf="!user" (click)="onLogin()">Login</button>
+  </div>
 </nav>

@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Test } from '../model/test';
 import { BehaviorSubject } from 'rxjs';
-import { JsonDownloadService } from './json-download.service';
-import { LocalStorageService } from './local-storage.service';
+import { CollectionService } from 'src/app/api/collection/collection.service';
+import { Test } from 'src/app/model/test';
+import { User } from 'src/app/model/user';
+import { AuthService } from '../auth/auth.service';
+import { JsonDownloadService } from '../json-download/json-download.service';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +15,11 @@ export class TestCollectionStoreService {
   private _selectedTest = new BehaviorSubject<Test | undefined>(undefined);
   private _testToEdit: Test | undefined = undefined;
 
-  get testCollection() {
+  get testCollection$() {
     return this._testCollection.asObservable();
   }
 
-  get currentTest() {
+  get currentTest$() {
     return this._selectedTest.asObservable();
   }
 
@@ -26,12 +29,20 @@ export class TestCollectionStoreService {
 
   constructor(
     private jsonDownload: JsonDownloadService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private collectionService: CollectionService,
+    private authService: AuthService
   ) {
     this._testCollection.next(this.localStorageService.collection);
-    this._testCollection.subscribe(
-      (collection) => (this.localStorageService.collection = collection)
-    );
+    this._testCollection.subscribe((collection) => {
+      this.localStorageService.collection = collection;
+      this.updateRemoteCollection();
+    });
+    this.authService.onUserLogin.subscribe((user) => {
+      if (user) this.loadRemoteData(user);
+      else this.clearCollection();
+    });
+    this.authService.onSignOut.subscribe((value) => value && this.clear());
   }
 
   setEditTest(test: Test): void {
@@ -85,6 +96,12 @@ export class TestCollectionStoreService {
     }
   }
 
+  clear(): void {
+    this.clearCollection();
+    this.clearTestToEdit();
+    this._selectedTest.next(undefined);
+  }
+
   private findByUuid(uuid: string): Test | undefined {
     const collection = this._testCollection.getValue();
     return collection.find((t) => t.uuid === uuid);
@@ -95,5 +112,26 @@ export class TestCollectionStoreService {
     const currentTestDate = new Date(testToCompare.creationDate);
 
     return currentTestDate <= comparedTestDate;
+  }
+
+  private updateRemoteCollection(): void {
+    if (this.localStorageService.userUuid)
+      this.collectionService.setCollection(
+        this.localStorageService.userUuid,
+        this._testCollection.getValue()
+      );
+  }
+
+  private loadRemoteData(user: User): void {
+    this.collectionService.getCollection(user.uuid).subscribe((value) => {
+      if (value)
+        this._testCollection.next(
+          Object.entries(value).map(([key, value]) => value)
+        );
+    });
+  }
+
+  private clearCollection(): void {
+    this._testCollection.next([]);
   }
 }

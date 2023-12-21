@@ -1,7 +1,7 @@
+import { Entity } from './entity';
 import { Question } from './question';
 
-export interface Test {
-  uuid: string;
+export interface Test extends Entity {
   title: string;
   questions: Question[];
   creationDate: string;

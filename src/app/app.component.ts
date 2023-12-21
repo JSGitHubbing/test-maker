@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TestCollectionStoreService } from './services/test-collection-store.service';
-import { AppRoutes } from './constants/routes';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +6,7 @@ import { AppRoutes } from './constants/routes';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'test-maker';
+  title = 'Test Maker';
+
+  constructor() {}
 }

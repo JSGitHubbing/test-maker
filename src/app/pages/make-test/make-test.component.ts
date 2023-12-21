@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { AppRoutes } from 'src/app/constants/routes';
 import { Question } from 'src/app/model/question';
 import { Test } from 'src/app/model/test';
-import { TestCollectionStoreService } from 'src/app/services/test-collection-store.service';
-import { TestValidatorService } from 'src/app/services/test-validator.service';
-import { v4 as uuidv4, validate } from 'uuid';
+import { TestCollectionStoreService } from 'src/app/services/test-collection-store/test-collection-store.service';
+import { TestValidatorService } from 'src/app/services/test-validator/test-validator.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-make-test',
