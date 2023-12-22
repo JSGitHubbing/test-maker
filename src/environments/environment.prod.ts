@@ -6,7 +6,8 @@ export const environment = {
     projectId: "herramientas-chachis",
     storageBucket: "herramientas-chachis.appspot.com",
     messagingSenderId: "695530437316",
-    appId: "1:695530437316:web:aae3157658654375b76791"
+    appId: "1:695530437316:web:aae3157658654375b76791",
+    databaseURL: "https://herramientas-chachis-default-rtdb.europe-west1.firebasedatabase.app",
   },
 };
 
