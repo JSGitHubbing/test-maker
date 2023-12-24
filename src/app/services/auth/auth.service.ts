@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { UserService } from 'src/app/api/user/user.service';
 import { User } from 'src/app/model/user';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 @Injectable({
@@ -25,10 +24,10 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     private localStorageService: LocalStorageService,
-    private userService: UserService,
   ) {
     const currentUser = this.localStorageService.userSnapshot;
-    if (currentUser?.uuid) this.setUserData(currentUser);
+    // if (currentUser?.uuid) this.setUserData(currentUser);
+    if (currentUser?.uuid) this.localStorageService.clear();
   }
 
   get isLoggedIn(): boolean {
@@ -43,7 +42,7 @@ export class AuthService {
   login(provider: AuthProvider) {
     return this.afAuth
       .signInWithPopup(provider)
-      .then((result: any) => {
+      .then((result) => {
         this.setUserData(result.user);
       })
       .catch((error) => {
@@ -61,9 +60,6 @@ export class AuthService {
     };
     this.localStorageService.user = userData;
     this._onUserLogin.next(userData);
-    this.userService
-      .setUser(userData)
-      .subscribe();
   }
 
   signOut() {
